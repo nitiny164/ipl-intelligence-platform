@@ -72,6 +72,72 @@ for i, (icon, title, desc) in enumerate(MODULES):
 
 st.markdown(
     f"<p style='color:{PALETTE['muted']};font-size:0.75rem;margin-top:1.5rem'>"
-    "Built as a capstone data analytics project · Data: Cricsheet / IPL official records</p>",
+    "Data: Cricsheet / IPL official records</p>",
+    unsafe_allow_html=True,
+)
+
+# ── About the Author ──────────────────────────────────────────────────────────
+st.markdown("<div style='margin-top:2rem'></div>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div style="background:#FFFFFF;border:1px solid #E3E8EF;border-radius:12px;
+                padding:24px 28px;box-shadow:0 1px 4px rgba(0,0,0,0.05)">
+
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <span class="material-icons-round" style="font-size:20px;color:#1565C0">person</span>
+        <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;
+                     letter-spacing:0.08em;color:#546E7A">About the Author</span>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:20px">
+
+        <div style="flex:1;min-width:260px">
+          <p style="margin:0 0 4px;font-size:1.1rem;font-weight:700;color:#1A1A2E">Nitin Yadav</p>
+          <p style="margin:0 0 12px;font-size:0.85rem;color:#546E7A">
+            Data Analyst &amp; Deputy Manager &nbsp;·&nbsp; Shivalik Small Finance Bank &nbsp;·&nbsp; Delhi, India
+          </p>
+          <p style="margin:0;font-size:0.82rem;color:#455A64;line-height:1.7">
+            2+ years in analytics, dashboard development, reporting automation, and predictive modelling.
+            Built 10+ Power BI dashboards and Python ETL pipelines delivering RBI-compliant regulatory
+            reporting at a small finance bank. This platform is a self-initiated capstone project to
+            apply end-to-end ML and data engineering outside of work.
+          </p>
+        </div>
+
+        <div style="flex:0 0 auto;min-width:200px">
+          <p style="margin:0 0 10px;font-size:0.72rem;font-weight:700;text-transform:uppercase;
+                    letter-spacing:0.07em;color:#546E7A">Skills used in this project</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px">
+            """ + "".join([
+                f'<span style="background:#EEF2FF;color:#3730A3;border-radius:20px;'
+                f'padding:3px 10px;font-size:0.75rem;font-weight:500">{s}</span>'
+                for s in ["Python", "Pandas", "XGBoost", "SHAP", "Plotly",
+                          "Streamlit", "PyArrow", "scikit-learn", "Git"]
+            ]) + """
+          </div>
+          <p style="margin:0 0 10px;font-size:0.72rem;font-weight:700;text-transform:uppercase;
+                    letter-spacing:0.07em;color:#546E7A">Connect</p>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <a href="mailto:nitin19969@gmail.com"
+               style="display:flex;align-items:center;gap:7px;text-decoration:none;color:#1A1A2E;font-size:0.82rem">
+              <span class="material-icons-round" style="font-size:16px;color:#1565C0">email</span>
+              nitin19969@gmail.com
+            </a>
+            <a href="https://linkedin.com/in/nitin-yadav-ny" target="_blank"
+               style="display:flex;align-items:center;gap:7px;text-decoration:none;color:#1A1A2E;font-size:0.82rem">
+              <span class="material-icons-round" style="font-size:16px;color:#0077B5">work</span>
+              linkedin.com/in/nitin-yadav-ny
+            </a>
+            <a href="https://github.com/nitiny164/ipl-intelligence-platform" target="_blank"
+               style="display:flex;align-items:center;gap:7px;text-decoration:none;color:#1A1A2E;font-size:0.82rem">
+              <span class="material-icons-round" style="font-size:16px;color:#24292E">code</span>
+              github.com/nitiny164
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    """,
     unsafe_allow_html=True,
 )
