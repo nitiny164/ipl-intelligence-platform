@@ -17,107 +17,50 @@ st.set_page_config(
 
 inject_styles()
 
-# ── Author strip — always visible at top ──────────────────────────────────────
+# ── Project credit + contact strip — always visible at top ────────────────────
 st.markdown(
     """
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <div style="background:#FFFFFF;border:1px solid #E3E8EF;border-radius:10px;
                 padding:11px 20px;margin-bottom:16px;display:flex;align-items:center;
-                justify-content:space-between;flex-wrap:wrap;gap:10px;
+                justify-content:space-between;flex-wrap:wrap;gap:12px;
                 box-shadow:0 1px 3px rgba(0,0,0,0.04)">
       <div style="display:flex;align-items:center;gap:10px">
-        <span class="material-icons-round" style="font-size:20px;color:#1565C0">person</span>
+        <span class="material-icons-round" style="font-size:20px;color:#1565C0">code</span>
         <div>
-          <span style="font-weight:700;font-size:0.92rem;color:#1A1A2E">Nitin Yadav</span>
+          <span style="font-size:0.8rem;color:#546E7A">Project made by</span>
+          <span style="font-weight:700;font-size:0.92rem;color:#1A1A2E;margin-left:6px">Nitin Yadav</span>
           <span style="color:#CBD5E1;margin:0 8px">|</span>
-          <span style="font-size:0.8rem;color:#546E7A">Data Analyst &amp; Deputy Manager &nbsp;·&nbsp; Shivalik Small Finance Bank, Delhi</span>
+          <span style="font-size:0.8rem;color:#546E7A">Data Analyst, Shivalik Small Finance Bank</span>
         </div>
       </div>
-      <a href="https://linkedin.com/in/nitin-yadav-ny" target="_blank"
-         style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;
-                background:#0077B5;color:white;border-radius:6px;
-                padding:5px 13px;font-size:0.76rem;font-weight:600;white-space:nowrap">
-        <span class="material-icons-round" style="font-size:14px">open_in_new</span>
-        LinkedIn Profile
-      </a>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <a href="mailto:nitin19969@gmail.com"
+           style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+                  background:#F1F5F9;color:#1A1A2E;border-radius:6px;
+                  padding:5px 12px;font-size:0.76rem;font-weight:600;white-space:nowrap">
+          <span class="material-icons-round" style="font-size:14px;color:#1565C0">email</span>
+          Email
+        </a>
+        <a href="https://linkedin.com/in/nitin-yadav-ny" target="_blank"
+           style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+                  background:#0077B5;color:white;border-radius:6px;
+                  padding:5px 12px;font-size:0.76rem;font-weight:600;white-space:nowrap">
+          <span class="material-icons-round" style="font-size:14px">work</span>
+          LinkedIn
+        </a>
+        <a href="https://github.com/nitiny164/ipl-intelligence-platform" target="_blank"
+           style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+                  background:#24292E;color:white;border-radius:6px;
+                  padding:5px 12px;font-size:0.76rem;font-weight:600;white-space:nowrap">
+          <span class="material-icons-round" style="font-size:14px">code</span>
+          GitHub
+        </a>
+      </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
-
-# ── About me expander ─────────────────────────────────────────────────────────
-with st.expander("About the Author — click to expand"):
-    col_bio, col_contact = st.columns([3, 2])
-
-    with col_bio:
-        st.markdown("**Nitin Yadav**")
-        st.markdown(
-            "<p style='color:#546E7A;font-size:0.85rem;margin-top:-8px'>"
-            "Data Analyst &amp; Deputy Manager · Shivalik Small Finance Bank · Delhi, India"
-            "</p>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            "2+ years in analytics, dashboard development, reporting automation, and predictive "
-            "modelling — backed by 5+ years handling structured data across regulated environments. "
-            "At Shivalik Small Finance Bank, built 10+ Power BI dashboards and Python ETL pipelines "
-            "delivering RBI-compliant regulatory reporting with zero compliance breaches. "
-            "This platform is a self-initiated capstone project to apply end-to-end machine learning "
-            "and data engineering outside of work."
-        )
-        st.markdown("**Skills used in this project**")
-        skills_html = "".join([
-            f'<span style="background:#EEF2FF;color:#3730A3;border-radius:20px;'
-            f'padding:3px 11px;font-size:0.75rem;font-weight:500;margin:2px;display:inline-block">{s}</span>'
-            for s in ["Python", "Pandas", "NumPy", "PyArrow", "XGBoost",
-                      "scikit-learn", "SHAP", "Plotly", "Streamlit", "Git", "SQL"]
-        ])
-        st.markdown(
-            f'<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px">{skills_html}</div>',
-            unsafe_allow_html=True,
-        )
-
-    with col_contact:
-        st.markdown("**Contact & Links**")
-        st.markdown(
-            """
-            <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
-              <a href="mailto:nitin19969@gmail.com"
-                 style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#1A1A2E;font-size:0.84rem">
-                <span class="material-icons-round" style="font-size:17px;color:#1565C0">email</span>
-                nitin19969@gmail.com
-              </a>
-              <a href="https://linkedin.com/in/nitin-yadav-ny" target="_blank"
-                 style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#1A1A2E;font-size:0.84rem">
-                <span class="material-icons-round" style="font-size:17px;color:#0077B5">work</span>
-                linkedin.com/in/nitin-yadav-ny
-              </a>
-              <a href="https://github.com/nitiny164/ipl-intelligence-platform" target="_blank"
-                 style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#1A1A2E;font-size:0.84rem">
-                <span class="material-icons-round" style="font-size:17px;color:#24292E">code</span>
-                github.com/nitiny164
-              </a>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("**Education**")
-        st.markdown(
-            "<p style='font-size:0.82rem;color:#455A64;line-height:1.8;margin-top:4px'>"
-            "MCA — Swami Vivekananda Subharti University, 2023<br>"
-            "B.Sc. — IGNOU, 2021"
-            "</p>",
-            unsafe_allow_html=True,
-        )
-        st.markdown("**Certifications**")
-        st.markdown(
-            "<p style='font-size:0.82rem;color:#455A64;line-height:1.8;margin-top:4px'>"
-            "Data Science — Ducat Institute, Noida<br>"
-            "Power BI Data Analyst — CampusX"
-            "</p>",
-            unsafe_allow_html=True,
-        )
 
 # ── Hero ──────────────────────────────────────────────────────────────────────
 st.markdown(
