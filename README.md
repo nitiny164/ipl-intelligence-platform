@@ -110,5 +110,5 @@ streamlit run app/main.py
 
 ## Author
 
-Built by **Nitin** — Deputy Manager & Data Analyst  
-Capstone data analytics project · 2026
+Built by **Nitin Yadav**
+nitin19969@gmail.com
