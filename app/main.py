@@ -49,13 +49,6 @@ st.markdown(
           <span class="material-icons-round" style="font-size:14px">work</span>
           LinkedIn
         </a>
-        <a href="https://github.com/nitiny164/ipl-intelligence-platform" target="_blank"
-           style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;
-                  background:#24292E;color:white;border-radius:6px;
-                  padding:5px 12px;font-size:0.76rem;font-weight:600;white-space:nowrap">
-          <span class="material-icons-round" style="font-size:14px">code</span>
-          GitHub
-        </a>
       </div>
     </div>
     """,
