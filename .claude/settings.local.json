@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /tmp)",
+      "Bash(cp \"C:\\\\Users\\\\nitin\\\\Downloads\\\\IPL_Intelligence_Platform_Plan_v2.docx\" ipl.zip)",
+      "Bash(unzip -o ipl.zip -d ipl_extract)"
+    ]
+  }
+}

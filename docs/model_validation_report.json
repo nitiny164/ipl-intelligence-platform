@@ -1,0 +1,95 @@
+{
+  "val_auc_logreg": 0.9026,
+  "val_auc_xgboost": 0.8991,
+  "test_auc_calibrated": 0.8934,
+  "test_brier_calibrated": 0.1364,
+  "calibration_curve": {
+    "frac_pos": [
+      0.10608063450099141,
+      0.15568862275449102,
+      0.1972203838517538,
+      0.4598503740648379,
+      0.6456310679611651,
+      0.70625,
+      0.7016129032258065,
+      0.8144329896907216,
+      0.9204244031830239,
+      0.9622184548316783
+    ],
+    "mean_pred": [
+      0.035253301108968786,
+      0.13496847610229146,
+      0.2603123056659787,
+      0.3689343490654096,
+      0.4212676187115194,
+      0.5399206515401602,
+      0.6724672217591567,
+      0.7068456085686831,
+      0.8556159708902543,
+      0.9836964624561505
+    ]
+  },
+  "season_metrics": [
+    {
+      "season": 2025,
+      "balls": 7813,
+      "auc": 0.8931,
+      "log_loss": 0.4657,
+      "brier": 0.1348
+    },
+    {
+      "season": 2026,
+      "balls": 7983,
+      "auc": 0.9017,
+      "log_loss": 0.4345,
+      "brier": 0.1379
+    },
+    {
+      "season": 2024,
+      "balls": 7834,
+      "auc": 0.9012,
+      "log_loss": 0.3819,
+      "brier": 0.1251
+    }
+  ],
+  "train_seasons": [
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "val_seasons": [
+    2024
+  ],
+  "test_seasons": [
+    2025,
+    2026
+  ],
+  "feature_cols": [
+    "running_score",
+    "running_wickets",
+    "balls_remaining",
+    "runs_remaining",
+    "required_run_rate",
+    "current_run_rate",
+    "run_rate_gap",
+    "legal_balls_bowled",
+    "phase_pp",
+    "phase_mid",
+    "phase_death",
+    "team_form",
+    "venue_chase_pct"
+  ]
+}
