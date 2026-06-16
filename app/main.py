@@ -35,13 +35,12 @@ st.markdown(
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <a href="mailto:nitin19969@gmail.com"
-           style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+        <span style="display:inline-flex;align-items:center;gap:6px;
                   background:#F1F5F9;color:#1A1A2E;border-radius:6px;
                   padding:5px 12px;font-size:0.76rem;font-weight:600;white-space:nowrap">
           <span class="material-icons-round" style="font-size:14px;color:#1565C0">email</span>
-          Email
-        </a>
+          nitin19969@gmail.com
+        </span>
         <a href="https://linkedin.com/in/nitin-yadav-ny" target="_blank"
            style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;
                   background:#0077B5;color:white;border-radius:6px;
