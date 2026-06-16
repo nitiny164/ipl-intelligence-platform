@@ -31,7 +31,7 @@ st.markdown(
           <span style="font-size:0.8rem;color:#546E7A">Project made by</span>
           <span style="font-weight:700;font-size:0.92rem;color:#1A1A2E;margin-left:6px">Nitin Yadav</span>
           <span style="color:#CBD5E1;margin:0 8px">|</span>
-          <span style="font-size:0.8rem;color:#546E7A">Currently working as Data Analyst at Shivalik Small Finance Bank</span>
+          <span style="font-size:0.8rem;color:#546E7A">Currently working as Data Analyst &amp; Deputy Manager at Shivalik Small Finance Bank</span>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
