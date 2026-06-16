@@ -376,15 +376,103 @@ with tabs[1]:
             unsafe_allow_html=True,
         )
 
-    # Top wicket-takers leaderboard
-    st.subheader("Top Wicket-Takers — Career")
-    # Logic notes (cricket expert):
-    # - sort by wickets desc (already done in career_bowling_stats)
-    # - min_wickets=20 ensures no part-time bowlers inflate the list
-    # - bowling_avg = runs_conceded / wickets (lower = better)
-    # - bowling_sr  = balls / wickets (lower = better)
-    # - dot_pct     = dots / legal balls × 100 (higher = more pressure)
+    # Role map used by charts below
     _bowl_role_map = dict(zip(bowl_phase["bowler"], bowl_phase["bowling_role"]))
+
+    # Phase wickets bar chart — mirrors the batter phase chart
+    if not bowl_phase_row.empty:
+        _bph_vals = [bpr["bowl_pp_pct"]*100, bpr["bowl_mid_pct"]*100, bpr["bowl_death_pct"]*100]
+        fig_bphase = go.Figure(go.Bar(
+            x=["Powerplay (1–6)", "Middle (7–15)", "Death (16–20)"],
+            y=_bph_vals,
+            marker_color=["#1565C0", "#2E7D32", "#C62828"],
+            text=[f"{v:.1f}%" for v in _bph_vals],
+            textposition="outside",
+            textfont=dict(size=13, color="#1A1A2E"),
+        ))
+        fig_bphase.update_layout(
+            title=dict(text=f"{sel_bowler} — Wicket Distribution by Phase", font=dict(size=13)),
+            yaxis=dict(title="% of Career Wickets", range=[0, max(_bph_vals) * 1.3]),
+            height=320, template="plotly_white", showlegend=False,
+            font=dict(family="Inter, sans-serif"),
+        )
+        st.plotly_chart(fig_bphase, use_container_width=True)
+
+    # Economy vs Wickets scatter — equivalent of batter archetype quadrant
+    st.subheader("Bowler Landscape — Economy vs Wickets")
+    st.caption("Each dot is a bowler. Lower economy = harder to score off. More wickets = more impact. Selected bowler highlighted.")
+    _bowl_scatter = bowl[bowl["wickets"] >= 20].copy()
+    _bowl_scatter["Role"] = _bowl_scatter["bowler"].map(_bowl_role_map).fillna("Other")
+    _bowl_scatter["player_label"] = _bowl_scatter["player_full_name"]
+    _bowl_scatter["dot_pct_fmt"] = _bowl_scatter["dot_pct"].round(1).astype(str) + "%"
+
+    _role_colors = {
+        "New-Ball Bowler": "#1565C0",
+        "Middle-Overs Specialist": "#2E7D32",
+        "Death Specialist": "#C62828",
+        "Other": "#9E9E9E",
+    }
+    fig_bscatter = px.scatter(
+        _bowl_scatter,
+        x="economy", y="wickets",
+        color="Role",
+        color_discrete_map=_role_colors,
+        hover_name="player_label",
+        hover_data={"economy": ":.2f", "wickets": True, "dot_pct_fmt": True, "matches": True, "Role": False},
+        labels={"economy": "Economy (runs per over)", "wickets": "Career Wickets",
+                "dot_pct_fmt": "Dot Ball %", "matches": "Matches"},
+        opacity=0.65,
+    )
+    if sel_bowler in _bowl_scatter["bowler"].values:
+        _hl = _bowl_scatter[_bowl_scatter["bowler"] == sel_bowler].iloc[0]
+        fig_bscatter.add_trace(go.Scatter(
+            x=[_hl["economy"]], y=[_hl["wickets"]],
+            mode="markers+text",
+            marker=dict(size=14, color="black", symbol="star"),
+            text=[sel_bowler], textposition="top right",
+            showlegend=False, name="Selected",
+        ))
+    _eco_med = _bowl_scatter["economy"].median()
+    _wkt_med = _bowl_scatter["wickets"].median()
+    fig_bscatter.add_hline(y=_wkt_med, line_dash="dot", line_color="gray")
+    fig_bscatter.add_vline(x=_eco_med, line_dash="dot", line_color="gray")
+    fig_bscatter.update_layout(
+        height=460, template="plotly_white",
+        xaxis=dict(title="Economy — runs per over (lower = better)"),
+        yaxis=dict(title="Career Wickets (higher = better)"),
+        font=dict(family="Inter, sans-serif"),
+        annotations=[
+            dict(x=_bowl_scatter["economy"].min()+0.05, y=_bowl_scatter["wickets"].max()-5,
+                 text="Best: low economy + high wickets", showarrow=False,
+                 font=dict(size=10, color="#2E7D32"), xanchor="left"),
+        ],
+    )
+    st.plotly_chart(fig_bscatter, use_container_width=True)
+
+    # Top wicket-takers bar chart
+    st.subheader("Top 20 Wicket-Takers — Career")
+    _tb_chart = bowl[bowl["wickets"] >= 20].head(20).copy()
+    _tb_chart["Role"] = _tb_chart["bowler"].map(_bowl_role_map).fillna("Other")
+    _tb_chart["eco_fmt"] = _tb_chart["economy"].apply(lambda x: f"{x:.2f}")
+    fig_tb = px.bar(
+        _tb_chart.sort_values("wickets"),
+        y="player_full_name", x="wickets", orientation="h",
+        color="wickets", color_continuous_scale="Reds",
+        text=_tb_chart.sort_values("wickets")["wickets"].astype(int),
+        labels={"player_full_name": "", "wickets": "Career Wickets"},
+        hover_data={"economy": ":.2f", "bowling_avg": ":.1f", "dot_pct": ":.1f"},
+    )
+    fig_tb.update_layout(
+        height=560, template="plotly_white", coloraxis_showscale=False,
+        yaxis=dict(tickfont=dict(size=11)),
+        font=dict(family="Inter, sans-serif", size=11),
+        margin=dict(l=10, r=20, t=20, b=20),
+    )
+    fig_tb.update_traces(textposition="outside")
+    st.plotly_chart(fig_tb, use_container_width=True)
+
+    # Top wicket-takers leaderboard table
+    st.subheader("Top Wicket-Takers — Detailed Stats")
     top_bowl = (
         bowl[bowl["wickets"] >= 20]
         .head(20)[["player_full_name","wickets","matches","overs","economy","bowling_avg","bowling_sr","dot_pct"]]
